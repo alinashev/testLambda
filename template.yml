@@ -2,9 +2,8 @@ Resources:
     LambdaFunction:
         Type: AWS::Lambda::Function
         Properties:
-            FunctionName: A-test
+            FunctionName: A-test-02
             Handler: index.lambda_handler
-            Role: arn:aws:iam::062261762656:role/A-RoleForLambdaS3Full
             Code:
                 S3Bucket: task-bucket-a
                 S3Key: index.zip
