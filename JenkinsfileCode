@@ -8,6 +8,11 @@ pipeline {
                 sh  '''
                     aws s3 cp index.zip s3://a-channel-data-bucket-01-10/index.zip
 
+                    aws lambda update-function-code \
+                      --function-name A-test-02 \
+                      --region eu-west-2 \
+                      --s3-bucket a-channel-data-bucket-01-10\
+                      --s3-key index.zip
                     '''
                 }
               }
