@@ -4,9 +4,28 @@ Resources:
         Properties:
             FunctionName: A-test-02
             Handler: index.lambda_handler
+            Role: !GetAtt Role.Arn
             Code:
                 S3Bucket: task-bucket-a
                 S3Key: index.zip
             Timeout: 60
             MemorySize: 128
             Runtime: python3.9
+
+    Role:
+        Type: AWS::IAM::Role
+        Properties:
+            RoleName: A-LambdaFullAcces
+            AssumeRolePolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                    - Effect: Allow
+                      Principal:
+                          Service:
+                              - lambda.amazonaws.com
+                      Action:
+                          - 'sts:AssumeRole'
+            ManagedPolicyArns:
+                - arn:aws:iam::aws:policy/AmazonSQSFullAccess
+                - arn:aws:iam::aws:policy/AmazonS3FullAccess
+                - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
