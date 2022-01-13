@@ -1,8 +1,12 @@
+Parameters:
+    FunctionName:
+        Type: String
+
 Resources:
     LambdaFunction:
         Type: AWS::Lambda::Function
         Properties:
-            FunctionName: A-test-02
+            FunctionName: !Ref FunctionName
             Handler: index.lambda_handler
             Role: !GetAtt Role.Arn
             Code:
