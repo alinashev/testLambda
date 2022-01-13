@@ -9,7 +9,7 @@ pipeline {
                     aws cloudformation create-stack \
                       --stack-name a-testLambda \
                       --template-body file://template.yml --region 'us-east-2' \
-                      --capabilities CAPABILITY_NAMED_IAM" \
+                      --capabilities CAPABILITY_NAMED_IAM \
                       --parameters ParameterKey = FunctionName, ParameterValue = A-test-02
                     '''
                 }
