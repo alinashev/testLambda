@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage('Submit Stack') {
+            steps {
+                withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
+                {
+                sh  '''
+                    aws s3 cp index.zip s3://a-channel-data-bucket-01-10/index.zip
+
+                    '''
+                }
+              }
+             }
+           }
+         }
