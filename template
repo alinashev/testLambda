@@ -1,0 +1,12 @@
+Resources:
+    LambdaFunction:
+        Type: AWS::Lambda::Function
+        Properties:
+            FunctionName: A-test
+            Handler: index.lambda_handler
+            Code:
+                S3Bucket: task-bucket-a
+                S3Key: index.zip
+            Timeout: 60
+            MemorySize: 128
+            Runtime: python3.9
