@@ -10,10 +10,7 @@ pipeline {
                     ls
                     aws s3 cp template.yml s3://a-tech-bucket/temp/template.yml
                     ls
-                    cd Code/ ; zip -r ../index.zip . *
-                    pwd index.zip
-                    zip -sf index.zip
-                    cd ..
+                    cd dir && zip -r9 index.zip .
                     zip -sf index.zip
                     aws s3 cp Code/index.zip s3://a-tech-bucket/temp/index.zip
                     '''
