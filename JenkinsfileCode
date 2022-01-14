@@ -6,17 +6,12 @@ pipeline {
                 withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
                 {
                 sh  '''
-                    ls
+                    aws s3 cp s3://a-tech-bucket/Google-API-key/keys.py
                     cd Code && zip -r9 index.zip .
-                    pwd index.zip
+                    zip index.zip keys.py
                     aws s3 cp index.zip s3://a-tech-bucket/temp1/index.zip
                     rm index.zip
-                    ls
-                    cd ..
-                    cd Code && zip -r9 index.zip .
-                    pwd index.zip
-                    aws s3 cp index.zip s3://a-tech-bucket/temp2/index.zip
-                    rm index.zip
+
                     '''
                 }
               }
