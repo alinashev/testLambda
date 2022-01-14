@@ -9,7 +9,7 @@ pipeline {
                     cd Code/ ; zip -r ../index.zip . *
                     pwd index.zip
                     pwd template.yml
-                    aws s3 cp /var/lib/jenkins/workspace/test-deploy-lambda/Code/index.zip s3://a-tech-bucket/temp/index.zip
+                    aws s3 cp index.zip s3://a-tech-bucket/temp/index.zip
                     '''
                 }
               }
