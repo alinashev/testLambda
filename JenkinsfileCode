@@ -6,7 +6,7 @@ pipeline {
                 withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
                 {
                 sh  '''
-                    zip a-index.zip Code/*
+                    zip -r index.zip Code/*
                     aws s3 cp index.zip s3://a-tech-bucket/temp/index.zip
                     '''
                 }
