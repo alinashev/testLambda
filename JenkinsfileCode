@@ -9,12 +9,12 @@ pipeline {
                     cd Code && zip -r9 index.zip .
                     pwd index.zip
                     aws s3 cp index.zip s3://a-tech-bucket/temp1/index.zip
-                    rm index
+                    rm index.zip
                     cd..
                     cd Code && zip -r9 index.zip .
                     pwd index.zip
                     aws s3 cp index.zip s3://a-tech-bucket/temp2/index.zip
-                    rm index
+                    rm index.zip
                     '''
                 }
               }
