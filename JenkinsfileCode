@@ -10,7 +10,7 @@ pipeline {
                       --function-name A-test-pull-01 \
                       --region us-east-2 \
                       --s3-bucket a-tech-bucket\
-                      --s3-key Google-API-key/keys.py
+                      --s3-key Google-API-key/keys.zip
                     '''
                 }
               }
