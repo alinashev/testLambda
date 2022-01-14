@@ -6,10 +6,10 @@ pipeline {
                 withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
                 {
                 sh  '''
-                    cd Code/ ; zip -r ../index.zip . *
-                    pwd index.zip
                     pwd template.yml
                     aws s3 cp template.yml s3://a-tech-bucket/temp/template.yml
+                    cd Code/ ; zip -r ../index.zip . *
+                    pwd index.zip
                     '''
                 }
               }
