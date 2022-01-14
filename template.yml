@@ -1,6 +1,8 @@
 Parameters:
     FunctionName:
         Type: String
+    LambdaEnvBucket:
+        Type: String
 
 Resources:
     LambdaFunction:
@@ -9,6 +11,9 @@ Resources:
             FunctionName: !Ref FunctionName
             Handler: index.lambda_handler
             Role: !GetAtt Role.Arn
+            Environment:
+                Variables:
+                    bucket: !Ref LambdaEnvBucket
             Code:
                 S3Bucket: task-bucket-a
                 S3Key: index.zip
@@ -19,7 +24,7 @@ Resources:
     Role:
         Type: AWS::IAM::Role
         Properties:
-            RoleName: A-LambdaFullAcces-cf
+            RoleName: A-LambdaFullAcces-cf2env
             AssumeRolePolicyDocument:
                 Version: "2012-10-17"
                 Statement:

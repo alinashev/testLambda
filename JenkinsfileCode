@@ -6,7 +6,7 @@ pipeline {
                 withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
                 {
                 sh  '''
-                    aws s3 cp index.zip s3://a-channel-data-bucket-01-10/index.zip
+                    aws s3 cp index.zip s3://a-channel-data-bucket-01-10/temp/index.zip
 
                     aws lambda update-function-code \
                       --function-name A-test-02 \

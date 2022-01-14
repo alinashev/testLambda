@@ -10,7 +10,8 @@ pipeline {
                       --stack-name a-testLambda \
                       --template-body file://template.yml --region 'us-east-2' \
                       --capabilities CAPABILITY_NAMED_IAM \
-                      --parameters ParameterKey=FunctionName,ParameterValue=A-test-02
+                      --parameters ParameterKey=FunctionName,ParameterValue=A-test-env \
+                      ParameterKey=LambdaEnvBucket,ParameterValue=bucket_pipeline
                     '''
                 }
               }
