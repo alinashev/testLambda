@@ -8,7 +8,7 @@ pipeline {
                 sh  '''
                     cd Code/ ; zip -r ../index.zip . *
                     pwd index.zip
-                    aws s3 cp pwd index.zip s3://a-tech-bucket/temp/index.zip
+                    aws s3 cp index.zip s3://a-tech-bucket/temp/index.zip
                     '''
                 }
               }
