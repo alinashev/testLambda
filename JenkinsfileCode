@@ -12,9 +12,9 @@ pipeline {
                     ls
                     cd Code/ ; zip -r ../index.zip . *
                     pwd index.zip
-                    ls
+                    zip -sf index.zip
                     cd ..
-                    ls
+                    zip -sf index.zip
                     aws s3 cp Code/index.zip s3://a-tech-bucket/temp/index.zip
                     '''
                 }
