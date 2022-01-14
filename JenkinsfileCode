@@ -9,7 +9,7 @@ pipeline {
                     aws s3 cp index.zip s3://a-channel-data-bucket-01-10/temp/index.zip
 
                     aws lambda update-function-code \
-                      --function-name A-test-02 \
+                      --function-name A-test-env \
                       --region us-east-2 \
                       --s3-bucket a-channel-data-bucket-01-10\
                       --s3-key index.zip
