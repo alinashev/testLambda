@@ -7,6 +7,7 @@ pipeline {
                 {
                 sh '''
                     aws cloudformation create-change-set \
+                      --change-set-name add-layer \
                       --stack-name a-testLambda2 \
                       --template-body file://templateUpdate.yml --region 'us-east-2' \
                       --capabilities CAPABILITY_NAMED_IAM \
