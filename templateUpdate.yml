@@ -1,0 +1,57 @@
+Parameters:
+    FunctionName:
+        Type: String
+    LambdaEnvBucket:
+        Type: String
+
+Resources:
+    LambdaFunction:
+        Type: AWS::Lambda::Function
+        Properties:
+            FunctionName: !Ref FunctionName
+            Handler: index.lambda_handler
+            Role: !GetAtt Role.Arn
+            Environment:
+                Variables:
+                    bucket: !Ref LambdaEnvBucket
+            Code:
+                S3Bucket: task-bucket-a
+                S3Key: index.zip
+            Timeout: 60
+            MemorySize: 128
+            Runtime: python3.9
+            Layers:
+                - !Ref Layer
+
+    Role:
+        Type: AWS::IAM::Role
+        Properties:
+            RoleName: A-LambdaFullAcces-cf2env
+            AssumeRolePolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                    - Effect: Allow
+                      Principal:
+                          Service:
+                              - lambda.amazonaws.com
+                      Action:
+                          - 'sts:AssumeRole'
+            ManagedPolicyArns:
+                - arn:aws:iam::aws:policy/AmazonSQSFullAccess
+                - arn:aws:iam::aws:policy/AmazonS3FullAccess
+                - arn:aws:iam::aws:policy/CloudWatchLogsFullAccess
+
+    Layer:
+        Type: AWS::Lambda::LayerVersion
+        Properties:
+            LayerName: layer
+            Content:
+                S3Bucket: task-bucket-a
+                S3Key: python.zip
+            CompatibleArchitectures:
+                - x86_64
+            CompatibleRuntimes:
+                - python3.9
+                - python3.8
+                - python3.7
+                - python3.6

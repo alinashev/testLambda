@@ -8,7 +8,7 @@ pipeline {
                 sh '''
                     aws cloudformation create-change-set \
                       --stack-name a-testLambda2 \
-                      --template-body file://template.yml --region 'us-east-2' \
+                      --template-body file://templateUpdate.yml.yml --region 'us-east-2' \
                       --capabilities CAPABILITY_NAMED_IAM \
                       --parameters ParameterKey=FunctionName,ParameterValue=A-test-env \
                       ParameterKey=LambdaEnvBucket,ParameterValue=bucket_pipeline
