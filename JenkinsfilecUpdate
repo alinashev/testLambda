@@ -9,7 +9,8 @@ pipeline {
                     aws cloudformation create-change-set \
                       --change-set-name add-layer \
                       --stack-name a-testLambda2 \
-                      --template-body file://templateUpdate.yml --region 'us-east-2' \
+                      --template-body file://templateUpdate.yml \
+                       --region 'us-east-2' \
                       --capabilities CAPABILITY_NAMED_IAM \
                       --parameters ParameterKey=FunctionName,ParameterValue=A-test-env \
                       ParameterKey=LambdaEnvBucket,ParameterValue=bucket_pipeline
@@ -25,7 +26,8 @@ pipeline {
                 sh '''
                     aws cloudformation execute-change-set \
                       --change-set-name add-layer \
-                      --stack-name a-testLambda2
+                      --stack-name a-testLambda2 \
+                      --region 'us-east-2'
                     '''
                 }
               }
