@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Update Stack') {
+        stage('Create Change-Set') {
             steps {
                 withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
                 {
@@ -17,5 +17,19 @@ pipeline {
                 }
               }
              }
+
+            stage('Execute Change-Set') {
+            steps {
+                withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
+                {
+                sh '''
+                    aws cloudformation execute-change-set \
+                      --change-set-name add-layer \
+                      --stack-name a-testLambda2
+                    '''
+                }
+              }
+             }
+
            }
          }
