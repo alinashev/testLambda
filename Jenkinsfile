@@ -16,5 +16,18 @@ pipeline {
                 }
               }
              }
+            stage('Stack create complete'){
+            steps{
+                withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
+                    {
+                    sh '''
+                        aws cloudformation wait stack-create-complete \
+                            --stack-name a-testLambda2  \
+                            --region 'us-east-2'
+                        '''
+                    }
+                }
+            }
+
            }
          }
