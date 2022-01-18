@@ -51,9 +51,9 @@ pipeline {
                     {
                     sh '''
                         aws cloudformation wait stack-update-complete \
-                            --change-set-name update-name1 \
-                            --stack-name a-test-stack \
-                            --region 'us-east-2'
+                          --change-set-name add-layer \
+                          --stack-name a-testLambda2 \
+                          --region 'us-east-2'
                         '''
                     }
                 }
