@@ -45,6 +45,18 @@ pipeline {
                 }
               }
              }
-
+            stage('Stack update complete'){
+            steps{
+                withCredentials([aws(accessKeyVariable:'AWS_ACCESS_KEY_ID', credentialsId:'aws-cresds1', secretKeyVariable:'AWS_SECRET_ACCESS_KEY')])
+                    {
+                    sh '''
+                        aws cloudformation wait stack-update-complete \
+                            --change-set-name update-name1 \
+                            --stack-name a-test-stack \
+                            --region 'us-east-2'
+                        '''
+                    }
+                }
+            }
            }
          }
